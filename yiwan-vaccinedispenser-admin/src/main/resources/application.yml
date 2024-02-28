@@ -1,0 +1,35 @@
+server:
+  port: 5160
+spring:
+  profiles:
+    active: dev
+  mvc:
+    throw-exception-if-no-handler-found: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  main:
+    allow-circular-references: true
+
+#websocket
+websocket:
+  port: 8880
+
+# 增加支持xml配置
+mybatis-plus:
+  # 控制台打印sql语句
+  #  configuration:
+  #    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  global-config:
+    db-config:
+      id-type: auto    #  数据库ID自增,数据库需要支持主键自增(如MySQL)，并设置主键自增
+      logic-delete-value: 1 # 逻辑已删除值(默认为 1)
+      logic-not-delete-value: 0 # 逻辑未删除值(默认为 0)
+  mapper-locations: classpath*:/mapper/**/*.xml
+
+
+# expiration 指的是失效时间，单位是秒86400(1天)
+jwt:
+  secret: injectiondispenser
+  expiration: 86400
+  tokenHead: Bearer
